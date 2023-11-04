@@ -1,13 +1,16 @@
-//mongoose
+// mongoose
 
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const { MONGODB_URI } = process.env;
 
 mongoose.set('strictQuery', true);
 
-mongoose.connect(MONGODB_URI).then(()=>{
+mongoose
+  .connect(MONGODB_URI)
+  .then(() => {
     console.log('DB conectada');
-}).catch((e)=>{
+  })
+  .catch((e) => {
     console.error(e);
-});
+  });

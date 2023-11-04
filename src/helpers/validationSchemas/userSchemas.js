@@ -29,6 +29,8 @@ export const post_userSchema = Joi.object({
       'string.min': 'El campo password debe tener al menos 3 caracteres',
       'string.max': 'El campo password debe tener como maximo 30 caracteres',
       'any.required': 'El campo password es requerido',
+      'string.pattern.base':
+        'La contraseña debe tener al menos un numero, una letra minuscula, una letra mayuscula, un caracter especial y un minimo de 8 caracteres',
       '*': 'Revisa el campo password',
     }),
 });
@@ -57,6 +59,8 @@ export const put_userSchema = Joi.object({
     .messages({
       'string.min': 'El campo password debe tener al menos 3 caracteres',
       'string.max': 'El campo password debe tener como maximo 30 caracteres',
+      'string.pattern.base':
+        'La contraseña debe tener al menos un numero, una letra minuscula, una letra mayuscula, un caracter especial y un minimo de 8 caracteres',
       '*': 'Revisa el campo password',
     }),
 }).custom((value, helper) => {
@@ -65,4 +69,6 @@ export const put_userSchema = Joi.object({
   if (!firstname && !lastname && !username && !password) {
     return helper.message('Al menos un campo debe estar presente en el body');
   }
+
+  return true;
 });

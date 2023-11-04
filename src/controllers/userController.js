@@ -4,7 +4,7 @@ import UserModel from '../models/userSchema.js';
 
 export const getUsers = async (_, response) => {
   try {
-    const data = await UserModel.find({});
+    const data = await UserModel.find();
 
     const filteredData = data
       .filter((user) => user._doc.isActive === true)
@@ -74,7 +74,7 @@ export const putUser = async (request, response) => {
   try {
     const action = await UserModel.updateOne({ _id: id }, body);
 
-    if (action.modifiedCount === 0) {
+    if (action.matchedCount === 0) {
       response.status(400).json({
         data: null,
         message: 'No se encontro un usuario con ese id',

@@ -1,12 +1,19 @@
 import express from 'express';
+
 import {
   deleteUser,
   getUsers,
   postUser,
   putUser,
 } from '../controllers/userController.js';
+
 import { validateBody } from '../middlewares/validateBody.js';
-import { post_userSchema, put_userSchema } from '../helpers/validationSchemas/userSchemas.js';
+
+import {
+  post_userSchema,
+  put_userSchema,
+} from '../helpers/validationSchemas/userSchemas.js';
+import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
 const router = express.Router();
 
@@ -21,9 +28,14 @@ router.post(
 );
 
 // PUT
-router.put('/:id', (request, response, next) => validateBody(request, response, next, put_userSchema), putUser);
+router.put(
+  '/:id',
+  isAuthenticated,
+  (request, response, next) => validateBody(request, response, next, put_userSchema),
+  putUser,
+);
 
 // DELETE
-router.delete('/:id', deleteUser);
+router.delete('/:id', isAuthenticated, deleteUser);
 
 export default router;

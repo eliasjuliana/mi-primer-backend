@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const User = new mongoose.Schema({
     firstname: {
@@ -12,6 +12,7 @@ const User = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -21,6 +22,5 @@ const User = new mongoose.Schema({
     isAdmin: Boolean,
 });
 
-
 export default mongoose.model('Users', User);
-//dos parametros, nombre de la coleccion y nombre del modelo
+// dos parametros, nombre de la coleccion y nombre del modelo
