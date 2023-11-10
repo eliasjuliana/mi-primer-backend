@@ -102,13 +102,17 @@ export const putUser = async (request, response) => {
   }
 };
 
+// DELETE
 export const deleteUser = async (request, response) => {
   const {
     params: { id },
   } = request;
 
   try {
-    const action = await UserModel.updateOne({ _id: id, isActive: true }, { isActive: false });
+    const action = await UserModel.updateOne(
+      { _id: id, isActive: true },
+      { isActive: false },
+    );
 
     if (action.matchedCount === 0) {
       response.status(400).json({

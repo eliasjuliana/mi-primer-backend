@@ -13,11 +13,11 @@ export const postLogin = async (request, response) => {
   try {
     const userInDB = await UserModel.findOne({ username, isActive: true });
 
-    // si el usuario no existe o no coinciden las contraseniasno
+    // si el usuario no existe o no coinciden las contraseñas
     if (!userInDB || !bcrypt.compareSync(password, userInDB.password)) {
       response.status(400).json({
         data: null,
-        message: 'usuario o contrasenia incorrectos',
+        message: 'usuario o contraseña incorrectos',
       });
       return;
     }
@@ -41,7 +41,7 @@ export const postLogin = async (request, response) => {
   } catch (e) {
     response.status(500).json({
       data: null,
-      message: 'Ocurrio un error en el inicio de sesion',
+      message: 'Ocurrio un error en el inicio de sesión',
     });
   }
 };

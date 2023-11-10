@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import userRouter from './routes/userRoutes.js';
 import authRouter from './routes/authRoutes.js';
+import blogRouter from './routes/blogRoutes.js';
 
 // conexion con la DB
 import './database/database.js';
@@ -24,6 +25,7 @@ app.use(express.json());
 // 4.Rutas
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/blogs', blogRouter);
 
 // 5. Iniciar el loop del servidor
 app.listen(PORT, () => {

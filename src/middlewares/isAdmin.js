@@ -1,7 +1,5 @@
 export const isAdmin = (request, response, next) => {
-  const {
-    user,
-  } = request;
+  const { user } = request;
 
   if (!user.isAdmin) {
     response.status(403).json({

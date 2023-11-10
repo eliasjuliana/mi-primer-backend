@@ -14,6 +14,7 @@ import {
   put_userSchema,
 } from '../helpers/validationSchemas/userSchemas.js';
 import { isAuthenticated } from '../middlewares/isAuthenticated.js';
+import { isAdmin } from '../middlewares/isAdmin.js';
 
 const router = express.Router();
 
@@ -23,6 +24,8 @@ router.get('/', getUsers);
 // POST
 router.post(
   '/',
+  isAuthenticated,
+  isAdmin,
   (request, response, next) => validateBody(request, response, next, post_userSchema),
   postUser,
 );
@@ -31,11 +34,12 @@ router.post(
 router.put(
   '/:id',
   isAuthenticated,
+  isAdmin,
   (request, response, next) => validateBody(request, response, next, put_userSchema),
   putUser,
 );
 
 // DELETE
-router.delete('/:id', isAuthenticated, deleteUser);
+router.delete('/:id', isAuthenticated, isAdmin, deleteUser);
 
 export default router;
