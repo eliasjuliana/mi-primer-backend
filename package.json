@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node --env-file=.env --watch src/index.js",
     "build": "esbuild src/index.js --bundle --platform=node --outfile=dist/index.cjs --minify",
-    "start": "node --env-file=.env dist/index.cjs"
+    "start": "node --env-file=.env dist/index.cjs",
+    "lint": "prettier . -w && esLint . --fix"
   },
   "keywords": [
     "backend"
@@ -15,8 +16,16 @@
   "author": "Juliana Elias",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.6.3",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.5",
+    "eslint-config-airbnb-base": "^15.0.0"
   }
 }
