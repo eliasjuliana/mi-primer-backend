@@ -24,9 +24,13 @@ export const postLogin = async (request, response) => {
 
     // todo ok, continuar con la creacion del token
     const userInfo = {
-      ...userInDB._doc,
-      password: undefined,
-      isActive: undefined,
+      user: {
+        id: userInDB._doc._id,
+        firstname: userInDB._doc.firstname,
+        lastname: userInDB._doc.lastname,
+        username: userInDB._doc.username,
+        isAdmin: userInDB._doc.isAdmin,
+      },
     };
 
     // parametros(payload, secretKey, options es un objeto)

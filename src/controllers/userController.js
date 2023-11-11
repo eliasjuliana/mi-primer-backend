@@ -9,9 +9,11 @@ export const getUsers = async (_, response) => {
     const filteredData = data
       .filter((user) => user._doc.isActive === true)
       .map((user) => ({
-        ...user._doc,
-        password: undefined,
-        isActive: undefined,
+        id: user._doc._id,
+        firstname: user._doc.firstname,
+        lastname: user._doc.lastname,
+        username: user._doc.username,
+        isAdmin: user._doc.isAdmin,
       }));
 
     response.json({ data: filteredData, message: 'Usuarios encontrados' });

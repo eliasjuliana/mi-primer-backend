@@ -7,8 +7,20 @@ export const getBlogs = async (_, response) => {
     const filteredData = data
       .filter((blog) => blog._doc.isActive === true)
       .map((blog) => ({
-        ...blog._doc,
-        isActive: undefined,
+        id: blog._doc._id,
+        'image-url': blog._doc.image_url,
+        title: blog._doc.title,
+        content: blog._doc.content,
+
+// esto hicimos antes, traer todo blog y cambiar lo q no necesitabamos
+// o acomdar los nombres para el front
+        // ...blog._doc,
+        // 'image-url': blog._doc.image_url, // le cambio el nombre
+        // a image_url para no tener problema con front
+        // id: blog._doc._id,
+        // _id: undefined,
+        // isActive: undefined,
+        // image_url: undefined, // saco este para q no esten duplicados
       }));
 
     response.json({ data: filteredData, message: 'Recetas encontradas' });
