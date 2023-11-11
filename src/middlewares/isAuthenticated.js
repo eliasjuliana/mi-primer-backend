@@ -22,7 +22,7 @@ export const isAuthenticated = (request, response, next) => {
 
     // creo un campo user en request con los datos del usuario que
     // vienen en payload para usarlo despues
-    request.user = payload;
+    request.user = payload.user;
 
     next();
   } catch (e) {

@@ -9,12 +9,12 @@ import {
 
 import { validateBody } from '../middlewares/validateBody.js';
 import { isAdmin } from '../middlewares/isAdmin.js';
+import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
 import {
   post_blogSchema,
   put_blogSchema,
 } from '../helpers/validationSchemas/blogSchemas.js';
-import { isAuthenticated } from '../middlewares/isAuthenticated.js';
 
 const router = express.Router();
 
