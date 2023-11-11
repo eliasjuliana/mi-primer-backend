@@ -24,8 +24,6 @@ router.get('/', getUsers);
 // POST
 router.post(
   '/',
-  isAuthenticated,
-  isAdmin,
   (request, response, next) => validateBody(request, response, next, post_userSchema),
   postUser,
 );
@@ -34,12 +32,11 @@ router.post(
 router.put(
   '/:id',
   isAuthenticated,
-  isAdmin,
   (request, response, next) => validateBody(request, response, next, put_userSchema),
   putUser,
 );
 
 // DELETE
-router.delete('/:id', isAuthenticated, isAdmin, deleteUser);
+router.delete('/:id', isAuthenticated, deleteUser);
 
 export default router;
