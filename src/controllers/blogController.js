@@ -32,6 +32,39 @@ export const getBlogs = async (_, response) => {
   }
 };
 
+export const getBlog = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+
+  try {
+    const data = await BlogModel.findOne({ isActive: true, _id: id });
+
+    // No encontró el blog
+    if (!data) {
+      res.status(400).json({
+        data: null,
+        message: 'No se encontró el blog solicitado',
+      });
+      return;
+    }
+
+    const result = {
+      id: data._doc._id,
+      'image-url': data._doc.imageUrl,
+      title: data._doc.title,
+      content: data._doc.content,
+    };
+
+    res.json({ data: result, message: 'Blog encontrado' });
+  } catch (e) {
+    res.status(500).json({
+      data: null,
+      message: 'Ocurrió un error al conectarse a la DB',
+    });
+  }
+};
+
 export const postBlog = async (request, response) => {
   const { body } = request;
 
