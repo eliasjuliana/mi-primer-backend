@@ -8,7 +8,7 @@ export const getBlogs = async (_, response) => {
       .filter((blog) => blog._doc.isActive === true)
       .map((blog) => ({
         id: blog._doc._id,
-        'image-url': blog._doc.image_url,
+        'image-url': blog._doc.imageUrl,
         title: blog._doc.title,
         content: blog._doc.content,
 
